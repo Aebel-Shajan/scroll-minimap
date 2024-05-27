@@ -1,12 +1,19 @@
+#app-container {
+  position: fixed;
+  top: 50px;
+  background-color: transparent;
+  z-index: 1000;
+  right: 20px;
+  width: 100px;
+  border: 1px solid #000;
+}
+
 #minimap {
   background-color: #ffffffcc;
   box-shadow: 0 0 5px #00000033;
-  z-index: 1000;
   position: fixed;
-  top: 50px;
-  right: 10px;
-  width: 100px;
   height: 80vh;
+  width: 100px;
   border: 1px solid #000;
   overflow-y: scroll;
   overflow-x: hidden;

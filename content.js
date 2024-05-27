@@ -19,7 +19,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-// Create elements
+// App container
+let appContainer = document.createElement('div');
+appContainer.id = 'app-container';
+
+// Options
+let optionContainer = document.createElement('div');
+optionContainer.id = 'option-container';
+let refreshButton = document.createElement('button');
+refreshButton.innerText = 'refresh';
+
+optionContainer.appendChild(refreshButton);
+appContainer.appendChild(optionContainer);
+
+// Minimap
 let viewBox, scrollBox;
 let minimap = document.createElement('div');
 minimap.id = 'minimap'
@@ -31,7 +44,8 @@ scrollDiv.id = 'scroll-div';
 
 minimap.appendChild(mapContainer);
 minimap.appendChild(scrollDiv);
-document.body.appendChild(minimap);
+appContainer.appendChild(minimap);
+document.body.appendChild(appContainer);
 
 
 // Functions
@@ -48,10 +62,10 @@ function getScrollBox() {
 
 function updateScrollDiv() {
     if (scrollBox) {
-        scrollPos = (scrollBox.scrollTop / scrollBox.scrollHeight) * 0.1 * viewBox.scrollHeight;
+        scrollPos = (scrollBox.scrollTop / scrollBox.scrollHeight) * 0.1 * viewBox.scrollHeight ;
         scrollDiv.style.top = `${scrollPos}px`;
 
-        let mapContainerScroll = scrollPos - (scrollPos * (minimap.offsetHeight - 50) / (0.1 * viewBox.scrollHeight));
+        let mapContainerScroll = scrollPos - (scrollPos * (minimap.offsetHeight - (scrollDiv.offsetHeight * 0.09)) / (0.1 * viewBox.scrollHeight));
         minimap.scrollTo(0, mapContainerScroll);
     }
 }
